@@ -1,3 +1,5 @@
+@import "styles";
+
 .transition (@transition : ~'all 0.3s ease') {
   -webkit-transition: @transition;
   -moz-transition:    @transition;
@@ -17,17 +19,23 @@
 @black : #000000;
 @white: #FFFFFF;
 
-form{
-  width: 75%;
-  float: left;
 
+.wrap{
+  display: flex;
+}
+
+form{
+  //width: 75%;
+  //float: left;
+flex: 75;
 }
 
 
 
 .helper{
-  width: 25%;
-  float: left;
+  flex: 25;
+  //width: 25%;
+  //float: left;
   a{
     display: inline-block;
     border: 1px solid @black;
@@ -70,13 +78,15 @@ span{
       }
     }
     &.box{
+      display: flex;
       label{
-        display: inline-block;
-        width: 27%;
-        margin-right: 3%;
-        input{
-          width: 100%;
-        }
+
+        //display: inline-block;
+        //width: 27%;
+        //margin-right: 3%;
+        //input{
+        //  width: 100%;
+        //}
       }
     }
   }
@@ -105,4 +115,34 @@ img.img-responsive{
   padding: 10px;
   border: 1px solid #e8e8e8;
   .border-radius;
+}
+
+select.material-icon-select{
+  font-family: 'Material-Icons';
+  //padding: 10px 5px;
+  //font-size: 24px;
+  //line-height: 24px;
+  height:auto;
+  //max-width: 120px;
+
+
+}
+
+
+.q-action-box{
+  float: left;
+  margin: 0 15px;
+  label{
+    display: block;
+    max-width: 220px;
+
+    input, select{
+      width: 100%;
+      height: 32px;
+      line-height: 32px;
+      font-size: 16px;
+      margin-bottom: 5px;
+
+    }
+  }
 }

@@ -20,11 +20,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="col-xs-6 col-xs-offset-2 col-sm-3 col-sm-offset-7 display-flex v-align-centered h-align-right" style="text-align:right;">
+        <!--            REFACTORING!!-->
+        <div class="col-xs-6 col-xs-offset-2 col-sm-3 col-sm-offset-7 display-flex v-align-centered h-align-right" >
             <a href="<?php echo esc_url( home_url( '/' ) )?>" title="<?php bloginfo('name'); ?>" class="mobile-go-home visible-xs <?php echo ( $options['tablet-right-place'] == 'logo' ? 'visible-sm visible-md' : false); ?>">
                 <img src="<?php echo esc_attr( $options['logo_image'] ); ?>" alt="<?php bloginfo('name'); ?>" id="mobile-header-logo">
             </a>
+            <i class="icon-close"></i>
 
 
 
@@ -40,7 +41,7 @@
 
 
 
-
+            <!--            END REFACTORING!!-->
         </div>
     </div>
 
@@ -79,22 +80,35 @@
     ?>
 
 <div class="col-xs-10 col-sm-5 mobile-menu-toggle hidden-lg">
-    <div class="row toggle-header display-flex">
-        <div class="col-xs-9 q-bar">
-            <?php if( $options['unfolded_1'] == 'phone') : ?>
-                <a href="tel:<?php echo $options['login_phone']; ?>"><i class="icon-phone"></i>Skontaktuj się</a>
-            <?php elseif( $options['unfolded_1'] == 'find') : ?>
-                <form role="search" method="get" id="searchform" class="searchform wmdm-search" action="">
-                    <input type="text" value="" name="s" id="s" placeholder="szukaj"><i class="icon-bs icon-search_bs"></i>
-                </form>
-            <?php else : ?>
-                <a href="<?php echo $options['login_link']; ?>"><i class="icon-lock"></i>Logowanie</a>
-            <?php endif; ?>
-        </div>
-        <div class="col-xs-3 close-menu display-flex h-align-centered v-align-centered">
-            <i class="icon-close"></i>
-        </div>
+    <div class="row q-bar display-flex">
+            <?php for($i=1; $i < 4; $i++) : ?>
+                <?php $icon = ($i == 1 ? 'search' : ($i == 2 ? 'lock' : 'phone')); ?>
+                <?php if($options['unfolded_'.$i]) : ?>
+                    <div class="unfolded <?php echo 'type-'.$i; ?>">
+                        <div>
+                        <i class="icon-<?php echo $icon; ?>"></i>
+                        <span><?php echo $options['unfolded_'.$i]; ?></span>
+                        <?php if($i == 1) : // SEARCH FORM ?>
+                        <form role="search" method="get" id="searchform" class="searchform wmdm-search" action="">
+                            <input type="text" value="" name="s" id="s" placeholder="<?php echo $options['unfolded_'.$i]; ?>"><i class="icon-search"></i>
+                        </form>
+                        <?php else : //LINKS ?>
+                            <a href="<?php  echo ($i == 3 ? 'tel:' : false).$options['login_'.($i == 2 ? 'link' : 'phone')]; ?>">
+                                <i class="icon-<?php echo $icon; ?>"></i>
+                                <span><?php echo $options['unfolded_'.$i]; ?></span>
+                            </a>
+                        <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+            <?php endfor; ?>
+
+            <div class="q-bar-back">
+                <i class="icon-keyboard-arrow-left"></i>
+            </div>
     </div>
+
     <div class="row visible-xs menu-wrapper">
         <?php wp_nav_menu( array( 'theme_location' => 'mobile-menu-material' ) ); ?>
     </div>
