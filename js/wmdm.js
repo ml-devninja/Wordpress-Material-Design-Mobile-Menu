@@ -4,9 +4,15 @@
     $(function() {
 
 
-    $('.wmdm-opener, .icon-close, .menu-item ').click(function () {
+    $('.wmdm-opener, .icon-close').click(function (e) {
+
         $('.mobile-menu-toggle, .header-mobile').toggleClass('open');
+
     });
+
+    $('.toggler').on('click', function () {
+        $(this).parent().toggleClass('toggled');
+    })
 
     $('.q-action').eq(1).addClass('middle');
 

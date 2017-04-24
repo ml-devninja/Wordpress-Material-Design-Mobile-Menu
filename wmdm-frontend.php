@@ -80,7 +80,7 @@
     ?>
 
 <div class="col-xs-10 col-sm-5 mobile-menu-toggle hidden-lg">
-    <div class="row q-bar display-flex">
+    <div class="row q-bar">
             <?php for($i=1; $i < 4; $i++) : ?>
                 <?php $icon = ($i == 1 ? 'search' : ($i == 2 ? 'lock' : 'phone')); ?>
                 <?php if($options['unfolded_'.$i]) : ?>
@@ -110,7 +110,10 @@
     </div>
 
     <div class="row visible-xs menu-wrapper">
-        <?php wp_nav_menu( array( 'theme_location' => 'mobile-menu-material' ) ); ?>
+        <?php wp_nav_menu( array(
+                'theme_location' => 'mobile-menu-material',
+                'walker' => new Custom_Walker_Nav_Menu
+        ) ); ?>
     </div>
     <div class="row visible-sm visible-md menu-wrapper">
         <?php wp_nav_menu( array( 'theme_location' => 'tablet-menu-material' ) ); ?>
